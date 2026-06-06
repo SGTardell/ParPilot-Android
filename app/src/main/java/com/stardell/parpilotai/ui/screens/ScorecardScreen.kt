@@ -40,6 +40,7 @@ fun ScorecardScreen(viewModel: GolferViewModel) {
     )
 
     var showFinishAlert by remember { mutableStateOf(false) }
+    var showBettingScreen by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -88,6 +89,17 @@ fun ScorecardScreen(viewModel: GolferViewModel) {
                 
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     if (activeScorecard != null) {
+                        // Betting Button
+                        Box(
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(8.dp))
+                                .background(Color.White.copy(alpha = 0.1f))
+                                .border(0.5.dp, Color(0xFFC5A059), RoundedCornerShape(8.dp))
+                                .clickable { showBettingScreen = true }
+                                .padding(10.dp)
+                        ) {
+                            Text("$", color = Color(0xFFC5A059), fontSize = 16.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
+                        }
                         // Map
                         Box(
                             modifier = Modifier
@@ -165,6 +177,12 @@ fun ScorecardScreen(viewModel: GolferViewModel) {
                 }) { Text("Cancel") }
             }
         )
+    }
+
+    if (showBettingScreen) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            BettingScreen(viewModel = viewModel, onDismiss = { showBettingScreen = false })
+        }
     }
 }
 
