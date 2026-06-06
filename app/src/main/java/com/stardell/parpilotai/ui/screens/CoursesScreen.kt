@@ -104,8 +104,9 @@ fun CoursesScreen(viewModel: GolferViewModel) {
                     .border(1.dp, Color.White.copy(alpha = 0.3f), RoundedCornerShape(16.dp)),
                 placeholder = { Text("Search courses...", color = Color.White.copy(alpha = 0.7f)) },
                 leadingIcon = { Icon(Icons.Default.Search, contentDescription = null, tint = Color.White.copy(alpha = 0.7f)) },
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                     cursorColor = Color.White,

@@ -26,6 +26,7 @@ import com.stardell.parpilotai.models.*
 import com.stardell.parpilotai.ui.theme.LocalParPilotColors
 import com.stardell.parpilotai.viewmodel.GolferViewModel
 import java.util.UUID
+import kotlin.math.abs
 
 @Composable
 fun BettingScreen(viewModel: GolferViewModel, onDismiss: () -> Unit) {

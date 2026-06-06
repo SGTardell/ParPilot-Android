@@ -8,6 +8,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.stardell.parpilotai.viewmodel.AppTheme
+import com.stardell.parpilotai.viewmodel.AppStyleTheme
 
 // Custom Theme Colors Object
 data class ParPilotColors(
