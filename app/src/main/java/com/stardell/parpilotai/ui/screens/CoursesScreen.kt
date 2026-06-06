@@ -159,7 +159,7 @@ fun CoursesScreen(viewModel: GolferViewModel) {
                         onEditClick = { /* TODO: Edit Sheet */ },
                         onMapClick = { /* TODO: Map Sheet */ }
                     )
-                    Divider(color = Color.White.copy(alpha = 0.1f))
+                    HorizontalDivider(color = Color.White.copy(alpha = 0.1f))
                 }
             }
         }

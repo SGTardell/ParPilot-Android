@@ -155,11 +155,10 @@ fun HomeScreen(viewModel: GolferViewModel, onSettingsClick: () -> Unit) {
                     )
                 }
 
-                Divider(
+                VerticalDivider(
                     color = Color.White.copy(alpha = 0.2f),
                     modifier = Modifier
                         .height(40.dp)
-                        .width(1.dp)
                 )
 
                 Column(

@@ -204,7 +204,7 @@ fun GolfersScreen(viewModel: GolferViewModel) {
                                 .clickable { /* TODO: Open Golfer Profile View */ }
                         )
                     }
-                    Divider(color = Color.White.copy(alpha = 0.1f), modifier = Modifier.padding(top = 10.dp))
+                    HorizontalDivider(color = Color.White.copy(alpha = 0.1f), modifier = Modifier.padding(top = 10.dp))
                 }
             }
 

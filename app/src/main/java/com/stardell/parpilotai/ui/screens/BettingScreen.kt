@@ -64,7 +64,7 @@ fun BettingScreen(viewModel: GolferViewModel, onDismiss: () -> Unit) {
                 Text("ROUND WAGERS", color = Color(0xFFC5A059), fontSize = 14.sp, fontFamily = FontFamily.Monospace)
                 Text(course.name, color = Color.White, fontSize = 14.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace, maxLines = 1)
             }
-            Divider(color = Color.White.copy(alpha = 0.1f))
+            HorizontalDivider(color = Color.White.copy(alpha = 0.1f))
 
             LazyColumn(modifier = Modifier.weight(1f).padding(horizontal = 8.dp, vertical = 8.dp)) {
                 item {
@@ -103,7 +103,7 @@ fun BettingScreen(viewModel: GolferViewModel, onDismiss: () -> Unit) {
             }
         }
 
-        Divider(modifier = Modifier.width(1.dp).fillMaxHeight(), color = Color.White.copy(alpha = 0.1f))
+        VerticalDivider(modifier = Modifier.width(1.dp).fillMaxHeight(), color = Color.White.copy(alpha = 0.1f))
 
         // Detail View
         Box(modifier = Modifier.weight(1f).fillMaxHeight()) {
