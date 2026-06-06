@@ -80,7 +80,7 @@ fun MainScreen(viewModel: GolferViewModel) {
             when (tabIndex) {
                 0 -> HomeScreen(viewModel = viewModel, onSettingsClick = { /* Open Settings */ })
                 1 -> CoursesScreen(viewModel = viewModel)
-                2 -> Box(modifier = Modifier.fillMaxSize().background(Color.Blue)) // TODO: GolfersScreen
+                2 -> GolfersScreen(viewModel = viewModel)
                 3 -> Box(modifier = Modifier.fillMaxSize().background(Color.Green)) // TODO: ScorecardScreen
                 4 -> Box(modifier = Modifier.fillMaxSize().background(Color.Gray)) // TODO: HistoryScreen
                 else -> HomeScreen(viewModel = viewModel, onSettingsClick = {})
