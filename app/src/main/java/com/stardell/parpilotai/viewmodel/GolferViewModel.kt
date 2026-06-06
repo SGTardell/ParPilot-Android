@@ -32,6 +32,18 @@ enum class AppTheme(val rawValue: String) {
     }
 }
 
+enum class AppStyleTheme(val rawValue: String) {
+    CLASSIC_GREEN("Classic Green"),
+    DARK_GOLD("Dark & Gold"),
+    PRO_TOUR_BLUE("Pro Tour Blue");
+
+    companion object {
+        fun fromString(value: String?): AppStyleTheme {
+            return values().find { it.rawValue == value } ?: CLASSIC_GREEN
+        }
+    }
+}
+
 class GolferViewModel(application: Application) : AndroidViewModel(application) {
     private val prefs = application.getSharedPreferences("ParPilotAI_Prefs", Context.MODE_PRIVATE)
     private val gson = Gson()
@@ -58,6 +70,9 @@ class GolferViewModel(application: Application) : AndroidViewModel(application) 
     // User Settings
     private val _themePreference = MutableStateFlow(AppTheme.SYSTEM)
     val themePreference: StateFlow<AppTheme> = _themePreference.asStateFlow()
+
+    private val _appStyleTheme = MutableStateFlow(AppStyleTheme.CLASSIC_GREEN)
+    val appStyleTheme: StateFlow<AppStyleTheme> = _appStyleTheme.asStateFlow()
 
     private val _hostName = MutableStateFlow("")
     val hostName: StateFlow<String> = _hostName.asStateFlow()
@@ -100,6 +115,7 @@ class GolferViewModel(application: Application) : AndroidViewModel(application) 
             }
 
             _themePreference.value = AppTheme.fromString(prefs.getString("AppThemePreference", "System"))
+            _appStyleTheme.value = AppStyleTheme.fromString(prefs.getString("ParPilotAI_Theme", "Classic Green"))
             _hostName.value = prefs.getString("ParPilotAI_HostName", "") ?: ""
             _useSlope.value = prefs.getBoolean("ParPilotAI_UseSlope", true)
             
@@ -131,6 +147,11 @@ class GolferViewModel(application: Application) : AndroidViewModel(application) 
     fun updateThemePreference(theme: AppTheme) {
         _themePreference.value = theme
         prefs.edit().putString("AppThemePreference", theme.rawValue).apply()
+    }
+
+    fun updateAppStyleTheme(theme: AppStyleTheme) {
+        _appStyleTheme.value = theme
+        prefs.edit().putString("ParPilotAI_Theme", theme.rawValue).apply()
     }
 
     fun updateHostName(name: String) {
