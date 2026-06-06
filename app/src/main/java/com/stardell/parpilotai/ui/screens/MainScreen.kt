@@ -81,7 +81,7 @@ fun MainScreen(viewModel: GolferViewModel) {
                 0 -> HomeScreen(viewModel = viewModel, onSettingsClick = { /* Open Settings */ })
                 1 -> CoursesScreen(viewModel = viewModel)
                 2 -> GolfersScreen(viewModel = viewModel)
-                3 -> Box(modifier = Modifier.fillMaxSize().background(Color.Green)) // TODO: ScorecardScreen
+                3 -> ScorecardScreen(viewModel = viewModel)
                 4 -> Box(modifier = Modifier.fillMaxSize().background(Color.Gray)) // TODO: HistoryScreen
                 else -> HomeScreen(viewModel = viewModel, onSettingsClick = {})
             }
