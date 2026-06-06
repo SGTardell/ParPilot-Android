@@ -159,6 +159,10 @@ class GolferViewModel(application: Application) : AndroidViewModel(application) 
         prefs.edit().putString("ParPilotAI_HostName", name).apply()
     }
 
+    fun updateSelectedTab(tabIndex: Int) {
+        _selectedTab.value = tabIndex
+    }
+
     fun updateUseSlope(use: Boolean) {
         _useSlope.value = use
         prefs.edit().putBoolean("ParPilotAI_UseSlope", use).apply()
