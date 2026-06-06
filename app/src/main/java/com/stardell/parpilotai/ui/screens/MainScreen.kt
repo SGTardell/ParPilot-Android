@@ -79,7 +79,7 @@ fun MainScreen(viewModel: GolferViewModel) {
         Crossfade(targetState = selectedTab, modifier = Modifier.padding(innerPadding)) { tabIndex ->
             when (tabIndex) {
                 0 -> HomeScreen(viewModel = viewModel, onSettingsClick = { /* Open Settings */ })
-                1 -> Box(modifier = Modifier.fillMaxSize().background(Color.Red)) // TODO: CourseScreen
+                1 -> CoursesScreen(viewModel = viewModel)
                 2 -> Box(modifier = Modifier.fillMaxSize().background(Color.Blue)) // TODO: GolfersScreen
                 3 -> Box(modifier = Modifier.fillMaxSize().background(Color.Green)) // TODO: ScorecardScreen
                 4 -> Box(modifier = Modifier.fillMaxSize().background(Color.Gray)) // TODO: HistoryScreen
