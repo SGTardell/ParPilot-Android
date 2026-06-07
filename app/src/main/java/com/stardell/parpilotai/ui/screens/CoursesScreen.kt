@@ -15,6 +15,12 @@ import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +40,7 @@ fun CoursesScreen(viewModel: GolferViewModel) {
     val courses by viewModel.courses.collectAsState()
     val activeScorecard by viewModel.activeScorecard.collectAsState()
     var searchText by remember { mutableStateOf("") }
+    var selectedMapCourse by remember { mutableStateOf<Course?>(null) }
     
     val filteredCourses = if (searchText.isEmpty()) {
         courses
@@ -157,9 +164,56 @@ fun CoursesScreen(viewModel: GolferViewModel) {
                         colors = colors,
                         onPlayClick = { /* TODO: Quick Start Sheet */ },
                         onEditClick = { /* TODO: Edit Sheet */ },
-                        onMapClick = { /* TODO: Map Sheet */ }
+                        onMapClick = { selectedMapCourse = course }
                     )
                     HorizontalDivider(color = Color.White.copy(alpha = 0.1f))
+                }
+            }
+        }
+    }
+
+    if (selectedMapCourse != null) {
+        val course = selectedMapCourse!!
+        val lat = course.latitude ?: 37.4220936
+        val lng = course.longitude ?: -122.083922
+        val courseLocation = LatLng(lat, lng)
+        val cameraPositionState = rememberCameraPositionState {
+            position = CameraPosition.fromLatLngZoom(courseLocation, 14f)
+        }
+
+        ModalBottomSheet(
+            onDismissRequest = { selectedMapCourse = null },
+            containerColor = colors.backgroundStart,
+            modifier = Modifier.fillMaxHeight(0.8f)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp)
+                    .padding(bottom = 32.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = course.name,
+                    color = Color.White,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontFamily = FontFamily.Monospace,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                GoogleMap(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f)
+                        .clip(RoundedCornerShape(16.dp)),
+                    cameraPositionState = cameraPositionState
+                ) {
+                    Marker(
+                        state = MarkerState(position = courseLocation),
+                        title = course.name,
+                        snippet = "Par Pilot Golf Course"
+                    )
                 }
             }
         }

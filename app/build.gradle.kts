@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation("androidx.compose.material:material-icons-extended")
     implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.maps.android:maps-compose:4.4.1")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

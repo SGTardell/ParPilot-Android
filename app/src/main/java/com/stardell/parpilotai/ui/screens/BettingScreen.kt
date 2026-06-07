@@ -128,13 +128,17 @@ fun BettingScreen(viewModel: GolferViewModel, onDismiss: () -> Unit) {
 
 @Composable
 fun SidebarButton(title: String, isSelected: Boolean, onClick: () -> Unit) {
+    val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
             .clip(RoundedCornerShape(8.dp))
             .background(if (isSelected) Color.White.copy(alpha = 0.2f) else Color.Transparent)
-            .clickable(onClick = onClick)
+            .clickable {
+                haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                onClick()
+            }
             .padding(horizontal = 12.dp, vertical = 10.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {

@@ -292,6 +292,7 @@ fun ScoreInputSheetContent(
     onDismiss: () -> Unit
 ) {
     val chips by viewModel.scoreChips.collectAsState()
+    val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
     
     Column(
         modifier = Modifier
@@ -318,6 +319,7 @@ fun ScoreInputSheetContent(
                     rowChips.forEach { chip ->
                         Button(
                             onClick = {
+                                haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
                                 val relativeScore = if (chip.title == "ACE") -(hole.par - 1) else chip.relativeScore
                                 val finalScore = hole.par + relativeScore
                                 val safeScore = maxOf(1, finalScore)
