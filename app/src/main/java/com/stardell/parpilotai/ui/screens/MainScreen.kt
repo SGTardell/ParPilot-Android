@@ -37,41 +37,39 @@ fun MainScreen(viewModel: GolferViewModel) {
 
     Scaffold(
         bottomBar = {
-            if (selectedTab != 0) { // Same logic as iOS: Home hides the background of the bottom bar or Home has its own overlay
-                NavigationBar(
-                    containerColor = Color.Black,
-                    contentColor = Color.White
-                ) {
-                    NavigationItem.values().forEach { item ->
-                        NavigationBarItem(
-                            icon = {
-                                Icon(
-                                    imageVector = item.icon,
-                                    contentDescription = item.title
-                                )
-                            },
-                            label = {
-                                Text(
-                                    text = item.title,
-                                    fontFamily = FontFamily.Monospace,
-                                    fontWeight = if (selectedTab == item.index) FontWeight.Bold else FontWeight.Normal,
-                                    fontSize = 10.sp,
-                                    maxLines = 1
-                                )
-                            },
-                            selected = selectedTab == item.index,
-                            onClick = {
-                                viewModel.updateSelectedTab(item.index)
-                            },
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedIconColor = Color.White,
-                                unselectedIconColor = Color.White.copy(alpha = 0.5f),
-                                selectedTextColor = Color.White,
-                                unselectedTextColor = Color.White.copy(alpha = 0.5f),
-                                indicatorColor = Color.Transparent
+            NavigationBar(
+                containerColor = if (selectedTab == 0) Color.Transparent else Color.Black,
+                contentColor = Color.White
+            ) {
+                NavigationItem.values().forEach { item ->
+                    NavigationBarItem(
+                        icon = {
+                            Icon(
+                                imageVector = item.icon,
+                                contentDescription = item.title
                             )
+                        },
+                        label = {
+                            Text(
+                                text = item.title,
+                                fontFamily = FontFamily.Monospace,
+                                fontWeight = if (selectedTab == item.index) FontWeight.Bold else FontWeight.Normal,
+                                fontSize = 10.sp,
+                                maxLines = 1
+                            )
+                        },
+                        selected = selectedTab == item.index,
+                        onClick = {
+                            viewModel.updateSelectedTab(item.index)
+                        },
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedIconColor = Color.White,
+                            unselectedIconColor = Color.White.copy(alpha = 0.5f),
+                            selectedTextColor = Color.White,
+                            unselectedTextColor = Color.White.copy(alpha = 0.5f),
+                            indicatorColor = Color.Transparent
                         )
-                    }
+                    )
                 }
             }
         }

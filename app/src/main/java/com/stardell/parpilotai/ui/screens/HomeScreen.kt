@@ -1,6 +1,8 @@
 package com.stardell.parpilotai.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
+
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -107,14 +109,18 @@ fun HomeScreen(viewModel: GolferViewModel, onSettingsClick: () -> Unit) {
 
             Spacer(modifier = Modifier.weight(1f))
 
-            // Animated Logo (Mocked with standard Android Icon for now until image resource exists)
+            // Animated Logo
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(240.dp),
                 contentAlignment = Alignment.Center
             ) {
-                // TODO: Add Par Pilot Wings drawable to res/drawable
+                Image(
+                    painter = painterResource(id = R.drawable.wings),
+                    contentDescription = "Par Pilot Logo",
+                    modifier = Modifier.fillMaxSize(0.8f)
+                )
             }
 
             Spacer(modifier = Modifier.weight(1f))
